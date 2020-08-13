@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'model.dart';
+import 'network.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,25 +21,40 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  Future<List<Photo>> photoList;
+
+  @override
+  void initState() {
+    super.initState();
+    photoList = fetchPhotos();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Corona Wallpapers'),
-      ),
-      body: ListView(
-        children: [
-          Placeholder(),
-          Placeholder(),
-          Placeholder(),
-          Placeholder(),
-          Placeholder(),
-          Placeholder(),
-          Placeholder(),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text('Corona Wallpapers'),
+        ),
+        body: Center(
+          child: FutureBuilder<List<Photo>>(
+              future: photoList,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Text(snapshot.data[39].url);
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+                return CircularProgressIndicator();
+              }),
+        ));
   }
 }
 
