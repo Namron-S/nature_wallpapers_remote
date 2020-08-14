@@ -1,3 +1,4 @@
+import 'package:corona_wallpaper_app/wall_paper_widget.dart';
 import 'package:flutter/material.dart';
 import 'model.dart';
 import 'network.dart';
@@ -48,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               future: photoList,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return Text(snapshot.data[39].url);
+                  return getWallPaperWidget(snapshot.data);
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }
