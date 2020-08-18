@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-Widget getWallPaperWidget(List<Photo> photoList) {
+Widget getWallPapersWidget(List<Photo> photoList) {
   return GridView.count(
     crossAxisCount: 3,
     children: photoList

@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               future: photoList,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return getWallPaperWidget(snapshot.data);
+                  return getWallPapersWidget(snapshot.data);
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }
