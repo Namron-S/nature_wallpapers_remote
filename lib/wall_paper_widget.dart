@@ -10,9 +10,11 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
                 child: GridTile(
                     child: GestureDetector(
               onTap: () {
-                String path = 'File Location of the cached NetworkImage';
-                final snackBar = SnackBar(content: Text(path));
-                Scaffold.of(context).showSnackBar(snackBar);
+                Navigator.push(context, MaterialPageRoute(builder: (_) {
+                  return DetailScreen(
+                    photoSource: e.source.portrait,
+                  );
+                }));
               },
               child: CachedNetworkImage(
                   placeholder: (context, url) => CircularProgressIndicator(),
@@ -20,4 +22,23 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
             ))))
         .toList(),
   );
+}
+
+class DetailScreen extends StatelessWidget {
+  final String photoSource;
+  const DetailScreen({Key key, @required this.photoSource}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: CachedNetworkImage(
+              placeholder: (context, url) => CircularProgressIndicator(),
+              imageUrl: this.photoSource),
+        ),
+      ),
+    );
+  }
 }
