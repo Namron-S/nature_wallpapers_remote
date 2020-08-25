@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'model.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:wallpaper_manager/wallpaper_manager.dart';
 
 Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
   return GridView.count(
@@ -12,7 +16,7 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) {
                   return DetailScreen(
-                    photoSource: e.source.portrait,
+                    photoUrl: e.source.portrait,
                   );
                 }));
               },
@@ -25,8 +29,27 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
 }
 
 class DetailScreen extends StatelessWidget {
-  final String photoSource;
-  const DetailScreen({Key key, @required this.photoSource}) : super(key: key);
+  final String photoUrl;
+
+  DetailScreen({Key key, @required this.photoUrl}) : super(key: key);
+
+  void _setWallPaper(
+      {@required bool asHomeScreen, @required bool asLockScreen}) async {
+    int location;
+    String result;
+
+    if (asHomeScreen) location = WallpaperManager.HOME_SCREEN;
+    if (asLockScreen) location = WallpaperManager.LOCK_SCREEN;
+    DefaultCacheManager dfltCchMngr = new DefaultCacheManager();
+
+    try {
+      var file = await dfltCchMngr.getSingleFile(this.photoUrl);
+      result = await WallpaperManager.setWallpaperFromFile(file.path, location);
+    } on PlatformException {
+      result = 'Failed to get wallpaper';
+    }
+    print(result);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +57,7 @@ class DetailScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(),
         body: Center(
-          child: CachedNetworkImage(
-              placeholder: (context, url) => CircularProgressIndicator(),
-              imageUrl: this.photoSource),
+          child: CachedNetworkImage(imageUrl: this.photoUrl),
         ),
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -44,13 +65,16 @@ class DetailScreen extends StatelessWidget {
             FloatingActionButton(
               //heroTag muss gesetzt werden, sonst Exception: there are multiple heroes that share the same tag
               heroTag: 'ButtonHomeScreen',
-              onPressed: null,
+              onPressed: () {
+                _setWallPaper(asHomeScreen: true, asLockScreen: false);
+              },
               tooltip: 'Set as Homescreen',
               child: Icon(Icons.add_to_home_screen),
             ),
             FloatingActionButton(
               heroTag: 'ButtonLockScreen',
-              onPressed: null,
+              onPressed: () =>
+                  _setWallPaper(asHomeScreen: false, asLockScreen: true),
               tooltip: 'Set as Locksreen',
               child: Icon(Icons.screen_lock_portrait),
             ),
