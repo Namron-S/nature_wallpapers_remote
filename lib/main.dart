@@ -58,29 +58,3 @@ class _MyHomePageState extends State<MyHomePage> {
         ));
   }
 }
-
-/**
- * Liste von WallPaperPhotos:
- * -GridView > GridTile > ImageView(photoModel.src.portrait) > (Hero Widget)
- * Datei: widget.dart
- **********************************************************************
-
- * getTrendingWallpaper:
- * http.get(
-        "https://api.pexels.com/v1/curated?per_page=$noOfImageToLoad&page=1",
-        headers: {"Authorization": apiKEY}).then((value) {
-      //print(value.body);
-
-      Map<String, dynamic> jsonData = jsonDecode(value.body);
-      jsonData["photos"].forEach((element) {
-        //print(element);
-        PhotosModel photosModel = new PhotosModel();
-        photosModel = PhotosModel.fromMap(element);
-        photos.add(photosModel);
-        //print(photosModel.toString()+ "  "+ photosModel.src.portrait);
-      });
-
-      setState(() {});
-    });
- * Datei: home.dart
- */
