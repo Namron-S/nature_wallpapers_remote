@@ -22,7 +22,7 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
               },
               child: CachedNetworkImage(
                   placeholder: (context, url) => CircularProgressIndicator(),
-                  imageUrl: '${e.source.tiny}'),
+                  imageUrl: '${e.source.portrait}'),
             ))))
         .toList(),
   );
