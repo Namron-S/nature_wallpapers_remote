@@ -6,12 +6,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wallpaper_manager/wallpaper_manager.dart';
 
 Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
-  Orientation orientation = MediaQuery.of(context).orientation;
   return GridView.builder(
       itemCount: photoList.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //TODO: responsivness to orientation is not working
-          crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
+      gridDelegate:
+          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
       itemBuilder: (BuildContext context, int index) {
         return GridTile(
             child: GestureDetector(

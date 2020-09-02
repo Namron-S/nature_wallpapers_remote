@@ -2,6 +2,13 @@ import 'package:corona_wallpaper_app/wall_paper_widget.dart';
 import 'package:flutter/material.dart';
 import 'model.dart';
 import 'network.dart';
+import 'package:flutter/services.dart';
+
+//TODO: Styling the GridView
+//TODO: Load automatically more Pictures
+//TODO: Save PhotoList to HD
+//TODO: Only make API-Call when photoList is more than (2?) Weeks old.
+//TODO: set to Orientation to Portrait only
 
 void main() {
   runApp(MyApp());
@@ -36,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     photoList = fetchPhotos();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   @override
