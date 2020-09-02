@@ -3,29 +3,29 @@ import 'package:flutter/services.dart';
 import 'model.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:wallpaper_manager/wallpaper_manager.dart';
 
 Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
-  return GridView.count(
-    crossAxisCount: 3,
-    children: photoList
-        .map((e) => Center(
-                child: GridTile(
-                    child: GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return DetailScreen(
-                    photoUrl: e.source.portrait,
-                  );
-                }));
-              },
-              child: CachedNetworkImage(
-                  placeholder: (context, url) => CircularProgressIndicator(),
-                  imageUrl: '${e.source.portrait}'),
-            ))))
-        .toList(),
-  );
+  Orientation orientation = MediaQuery.of(context).orientation;
+  return GridView.builder(
+      itemCount: photoList.length,
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          //TODO: responsivness to orientation is not working
+          crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
+      itemBuilder: (BuildContext context, int index) {
+        return GridTile(
+            child: GestureDetector(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_) {
+              return DetailScreen(photoUrl: photoList[index].source.portrait);
+            }));
+          },
+          child: CachedNetworkImage(
+            placeholder: (context, url) => CircularProgressIndicator(),
+            imageUrl: '${photoList[index].source.portrait}',
+          ),
+        ));
+      });
 }
 
 class DetailScreen extends StatelessWidget {
