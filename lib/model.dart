@@ -14,6 +14,17 @@ class Photo {
       this.photographerId,
       this.source});
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'width': width,
+        'height': height,
+        'url': url,
+        'photographer': photographer,
+        'photographerUrl': photographerUrl,
+        'photographerId': photographerId,
+        'source': source,
+      };
+
   factory Photo.fromMap(Map<String, dynamic> jsonMap) {
     return Photo(
         id: jsonMap['id'],
@@ -37,6 +48,17 @@ class Source {
       this.portrait,
       this.landscape,
       this.tiny});
+
+  Map<String, dynamic> toJson() => {
+        'original': original,
+        'large2x': large2x,
+        'large': large,
+        'medium': medium,
+        'small': small,
+        'portrait': portrait,
+        'landscape': landscape,
+        'tiny': tiny,
+      };
 
   factory Source.fromMap(Map<String, dynamic> jsonMap) {
     return Source(
