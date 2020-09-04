@@ -21,8 +21,9 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  path_provider: ^1.6.14
   flutter_cache_manager: ^1.4.1
-  wallpaper_manager: "^1.0.10"
+  wallpaper_manager: ^1.0.10
   cached_network_image: ^2.2.0+1
   http: ^0.12.2
   flutter:
