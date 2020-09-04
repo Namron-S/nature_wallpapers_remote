@@ -8,21 +8,27 @@ import 'package:wallpaper_manager/wallpaper_manager.dart';
 Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
   return GridView.builder(
       itemCount: photoList.length,
-      gridDelegate:
-          SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+      padding: const EdgeInsets.only(left: 6, right: 6),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 2,
+        mainAxisSpacing: 2,
+      ),
       itemBuilder: (BuildContext context, int index) {
-        return GridTile(
-            child: GestureDetector(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (_) {
-              return DetailScreen(photoUrl: photoList[index].src.portrait);
-            }));
-          },
-          child: CachedNetworkImage(
-            placeholder: (context, url) => CircularProgressIndicator(),
-            imageUrl: '${photoList[index].src.portrait}',
+        return FittedBox(
+          fit: BoxFit.fitWidth,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return DetailScreen(photoUrl: photoList[index].src.portrait);
+              }));
+            },
+            child: CachedNetworkImage(
+              placeholder: (context, url) => CircularProgressIndicator(),
+              imageUrl: '${photoList[index].src.portrait}',
+            ),
           ),
-        ));
+        );
       });
 }
 
