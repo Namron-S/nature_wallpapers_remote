@@ -15,12 +15,12 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
             child: GestureDetector(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (_) {
-              return DetailScreen(photoUrl: photoList[index].source.portrait);
+              return DetailScreen(photoUrl: photoList[index].src.portrait);
             }));
           },
           child: CachedNetworkImage(
             placeholder: (context, url) => CircularProgressIndicator(),
-            imageUrl: '${photoList[index].source.portrait}',
+            imageUrl: '${photoList[index].src.portrait}',
           ),
         ));
       });
