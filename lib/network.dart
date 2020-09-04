@@ -23,26 +23,26 @@ Future<List<Photo>> _fetchPhotos(String queryStr) async {
       'https://api.pexels.com/v1/search?query=$queryStr&per_page=$noOfPicsPerPage';
 
   List<http.Response> respList =
-      await fetch3PagesOfPhotos(photoBaseUrl, headers);
-  return convertResponseListToPhotoList(respList);
+      await _fetch3PagesOfPhotos(photoBaseUrl, headers);
+  return _convertResponseListToPhotoList(respList);
 }
 
-Future<List<http.Response>> fetch3PagesOfPhotos(
+Future<List<http.Response>> _fetch3PagesOfPhotos(
     var photoBaseUrl, final headers) async {
   List<http.Response> responseList = List<http.Response>();
   http.Response response;
 
   while (photoBaseUrl != null && responseList.length < 3) {
     print(photoBaseUrl);
-    response = await fetchOnePageOfPhotos(photoBaseUrl, headers);
+    response = await _fetchOnePageOfPhotos(photoBaseUrl, headers);
     responseList.add(response);
-    photoBaseUrl = getNextPageOfPhotos(response);
+    photoBaseUrl = _getNextPageOfPhotos(response);
   }
 
   return responseList;
 }
 
-Future<http.Response> fetchOnePageOfPhotos(
+Future<http.Response> _fetchOnePageOfPhotos(
     final photoBaseUrl, final headers) async {
   final http.Response response = await http.get(photoBaseUrl, headers: headers);
   if (response.statusCode == 200) {
@@ -54,12 +54,12 @@ Future<http.Response> fetchOnePageOfPhotos(
   }
 }
 
-String getNextPageOfPhotos(http.Response response) {
+String _getNextPageOfPhotos(http.Response response) {
   Map<String, dynamic> jsonMap = json.decode(response.body);
   return jsonMap['next_page'];
 }
 
-List<Photo> convertResponseListToPhotoList(List<http.Response> responseList) {
+List<Photo> _convertResponseListToPhotoList(List<http.Response> responseList) {
   List<Photo> photoList = new List();
   for (var response in responseList) {
     Map<String, dynamic> jsonMap = json.decode(response.body);
