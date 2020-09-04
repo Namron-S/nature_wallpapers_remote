@@ -25,7 +25,7 @@ class Photo {
         'source': source,
       };
 
-  factory Photo.fromMap(Map<String, dynamic> jsonMap) {
+  factory Photo.fromJson(Map<String, dynamic> jsonMap) {
     return Photo(
         id: jsonMap['id'],
         width: jsonMap['width'],
@@ -34,7 +34,7 @@ class Photo {
         photographer: jsonMap['photographer'],
         photographerUrl: jsonMap['photographer_url'],
         photographerId: jsonMap['photographer_id'],
-        source: Source.fromMap(jsonMap['src']));
+        source: Source.fromJson(jsonMap['source']));
   }
 }
 
@@ -60,7 +60,7 @@ class Source {
         'tiny': tiny,
       };
 
-  factory Source.fromMap(Map<String, dynamic> jsonMap) {
+  factory Source.fromJson(Map<String, dynamic> jsonMap) {
     return Source(
         original: jsonMap['original'],
         large2x: jsonMap['large2x'],
