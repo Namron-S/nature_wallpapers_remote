@@ -4,11 +4,10 @@ import 'model.dart';
 import 'network.dart';
 import 'package:flutter/services.dart';
 
+//TODO: Give User Feedback when the Home- or LockSreen was set
 //TODO: Styling the GridView
-//TODO: Load automatically more Pictures
-//TODO: Save PhotoList to HD
-//TODO: Only make API-Call when photoList is more than (2?) Weeks old.
-//TODO: set to Orientation to Portrait only
+//TODO: Implement favorites
+//TODO: Implement different categories (preDownload PhotoList and save it in asset Folder)
 
 void main() {
   runApp(MyApp());
@@ -42,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    photoList = fetchPhotos();
+    photoList = getPhotos('corona');
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
