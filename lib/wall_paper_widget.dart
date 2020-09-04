@@ -57,26 +57,33 @@ class DetailScreen extends StatelessWidget {
         body: Center(
           child: CachedNetworkImage(imageUrl: this.photoUrl),
         ),
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            FloatingActionButton(
-              //heroTag muss gesetzt werden, sonst Exception: there are multiple heroes that share the same tag
-              heroTag: 'ButtonHomeScreen',
-              onPressed: () {
-                _setWallPaper(asHomeScreen: true, asLockScreen: false);
-              },
-              tooltip: 'Set as Homescreen',
-              child: Icon(Icons.add_to_home_screen),
-            ),
-            FloatingActionButton(
-              heroTag: 'ButtonLockScreen',
-              onPressed: () =>
-                  _setWallPaper(asHomeScreen: false, asLockScreen: true),
-              tooltip: 'Set as Locksreen',
-              child: Icon(Icons.screen_lock_portrait),
-            ),
-          ],
+        floatingActionButton: Builder(
+          builder: (context) => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              FloatingActionButton(
+                //heroTag muss gesetzt werden, sonst Exception: there are multiple heroes that share the same tag
+                heroTag: 'ButtonHomeScreen',
+                onPressed: () {
+                  _setWallPaper(asHomeScreen: true, asLockScreen: false);
+                  Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text('Wallpaper set as homescreen.')));
+                },
+                tooltip: 'Set as Homescreen',
+                child: Icon(Icons.home),
+              ),
+              FloatingActionButton(
+                heroTag: 'ButtonLockScreen',
+                onPressed: () {
+                  _setWallPaper(asHomeScreen: false, asLockScreen: true);
+                  Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text('Wallpaper set as lockscreen.')));
+                },
+                tooltip: 'Set as Locksreen',
+                child: Icon(Icons.screen_lock_portrait),
+              ),
+            ],
+          ),
         ),
       ),
     );
