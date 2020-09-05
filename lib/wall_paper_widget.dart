@@ -16,7 +16,7 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
       ),
       itemBuilder: (BuildContext context, int index) {
         return FittedBox(
-          fit: BoxFit.fitWidth,
+          fit: BoxFit.fill,
           child: GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) {
@@ -25,7 +25,7 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
             },
             child: CachedNetworkImage(
               placeholder: (context, url) => CircularProgressIndicator(),
-              imageUrl: '${photoList[index].src.portrait}',
+              imageUrl: '${photoList[index].src.tiny}',
             ),
           ),
         );
