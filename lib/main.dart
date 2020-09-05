@@ -4,10 +4,9 @@ import 'model.dart';
 import 'network.dart';
 import 'package:flutter/services.dart';
 
-//TODO: Give User Feedback when the Home- or LockSreen was set
-//TODO: Styling the GridView
+//TODO: use GridView.count (works offline, but more memory usage) instead of GridView.builder (pro: loads pics dynamically, cons: doesn't work offline)?
 //TODO: Implement favorites
-//TODO: Implement different categories (preDownload PhotoList and save it in asset Folder)
+//TODO: Implement different categories
 
 void main() {
   runApp(MyApp());

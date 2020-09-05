@@ -1,0 +1,4 @@
+Was bedeutet „nullSafety“ in pubspec.lock file?
+
+launch.json: configurtions -> "flutterMode": "profile" wirft eine exception
+Exception: Profile mode is not supported for sdk gphone x86
