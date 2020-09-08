@@ -72,8 +72,8 @@ class DetailScreen extends StatelessWidget {
                 heroTag: 'ButtonHomeScreen',
                 onPressed: () {
                   _setWallPaper(asHomeScreen: true, asLockScreen: false);
-                  Scaffold.of(context).showSnackBar(
-                      SnackBar(content: Text('Wallpaper set as homescreen.')));
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Wallpaper was set as homescreen.')));
                 },
                 tooltip: 'Set as Homescreen',
                 child: Icon(Icons.home),
@@ -82,8 +82,8 @@ class DetailScreen extends StatelessWidget {
                 heroTag: 'ButtonLockScreen',
                 onPressed: () {
                   _setWallPaper(asHomeScreen: false, asLockScreen: true);
-                  Scaffold.of(context).showSnackBar(
-                      SnackBar(content: Text('Wallpaper set as lockscreen.')));
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Wallpaper was set as lockscreen.')));
                 },
                 tooltip: 'Set as Locksreen',
                 child: Icon(Icons.screen_lock_portrait),
