@@ -4,9 +4,13 @@ import 'model.dart';
 import 'network.dart';
 import 'package:flutter/services.dart';
 
-//TODO: use GridView.count (works offline, but more memory usage) instead of GridView.builder (pro: loads pics dynamically, cons: doesn't work offline)?
-//TODO: Implement favorites
+//TODO: Implement hamburger-menue
+//TODO: Implement favorites, About-Section
+//TODO: use xtra thread/isolate for downloading pictures
+
 //TODO: Implement different categories
+//TODO: use GridView.count (works offline, but more memory usage) instead of GridView.builder (pro: loads pics dynamically, cons: doesn't work offline)?
+//TODO: Use unsplash.api
 
 void main() {
   runApp(MyApp());
