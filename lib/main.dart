@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'model.dart';
 import 'network.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 
 //TODO: Implement hamburger-menue
 //TODO: Implement favorites, About-Section
@@ -45,7 +46,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     photoList = getPhotos('corona');
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    if (Device.get().isPhone)
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   @override
