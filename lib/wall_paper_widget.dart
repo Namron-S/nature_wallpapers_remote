@@ -6,30 +6,35 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wallpaper_manager/wallpaper_manager.dart';
 
 Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
-  return GridView.builder(
-      itemCount: photoList.length,
-      padding: const EdgeInsets.only(left: 6, right: 6),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 2,
-        mainAxisSpacing: 2,
-      ),
-      itemBuilder: (BuildContext context, int index) {
-        return FittedBox(
-          fit: BoxFit.fill,
-          child: GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return DetailScreen(photoUrl: photoList[index].src.portrait);
-              }));
-            },
-            child: CachedNetworkImage(
-              placeholder: (context, url) => CircularProgressIndicator(),
-              imageUrl: '${photoList[index].src.tiny}',
-            ),
+  return OrientationBuilder(
+    builder: (context, orientation) {
+      return GridView.builder(
+          itemCount: photoList.length,
+          padding: const EdgeInsets.only(left: 6, right: 6),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: orientation == Orientation.portrait ? 3 : 5,
+            crossAxisSpacing: 2,
+            mainAxisSpacing: 2,
           ),
-        );
-      });
+          itemBuilder: (BuildContext context, int index) {
+            return FittedBox(
+              fit: BoxFit.fill,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return DetailScreen(
+                        photoUrl: photoList[index].src.portrait);
+                  }));
+                },
+                child: CachedNetworkImage(
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  imageUrl: '${photoList[index].src.tiny}',
+                ),
+              ),
+            );
+          });
+    },
+  );
 }
 
 class DetailScreen extends StatelessWidget {
