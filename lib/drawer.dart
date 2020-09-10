@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'navigation.dart' as navi;
 
-class AppDrawer extends StatelessWidget {
+class NavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -8,34 +9,40 @@ class AppDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(),
-          _createDrawerItem(
-            icon: Icons.contacts,
-            text: 'Contacts',
-          ),
-          _createDrawerItem(
-            icon: Icons.event,
-            text: 'Events',
-          ),
-          _createDrawerItem(
-            icon: Icons.note,
-            text: 'Notes',
-          ),
           Divider(),
-          _createDrawerItem(icon: Icons.collections_bookmark, text: 'Steps'),
-          _createDrawerItem(icon: Icons.face, text: 'Authors'),
-          _createDrawerItem(
-              icon: Icons.account_box, text: 'Flutter Documentation'),
-          _createDrawerItem(icon: Icons.stars, text: 'Useful Links'),
-          Divider(),
-          _createDrawerItem(icon: Icons.bug_report, text: 'Report an issue'),
           ListTile(
-            title: Text('0.0.1'),
-            onTap: () {},
+            title: Text('Go to Home'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, navi.home);
+            },
           ),
+          ListTile(
+            title: Text('Go to Page 1'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, navi.page1);
+            },
+          ),
+          ListTile(
+            title: Text('Go to Page 2'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, navi.page2);
+            },
+          ),
+          //_createDrawerItem(icon: Icons.home, text: 'Page 1'),
+          //_createDrawerItem(icon: Icons.home, text: 'Page 2'),
         ],
       ),
     );
   }
+}
+
+Widget _createHeader() {
+  return DrawerHeader(
+    child: Text('Drawer Header'),
+    decoration: BoxDecoration(
+      color: Colors.blue,
+    ),
+  );
 }
 
 Widget _createDrawerItem(
@@ -51,14 +58,5 @@ Widget _createDrawerItem(
       ],
     ),
     onTap: onTap,
-  );
-}
-
-Widget _createHeader() {
-  return DrawerHeader(
-    child: Text('Drawer Header'),
-    decoration: BoxDecoration(
-      color: Colors.blue,
-    ),
   );
 }
