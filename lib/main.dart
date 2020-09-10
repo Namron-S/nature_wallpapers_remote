@@ -6,13 +6,12 @@ import 'network.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'navigation.dart' as navi;
+
 //TODO: Implement hamburger-menue
 //TODO: Implement favorites, About-Section
-//TODO: use xtra thread/isolate for downloading pictures
-
+//TODO: use xtra thread/isolate for downloading pictures?
 //TODO: Implement different categories
-//TODO: use GridView.count (works offline, but more memory usage) instead of GridView.builder (pro: loads pics dynamically, cons: doesn't work offline)?
-//TODO: Use unsplash.api
+//TODO: Use unsplash.api?
 
 void main() {
   runApp(MyApp());
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: navi.home,
+      initialRoute: navi.homePage,
       routes: navi.routes,
       title: 'Corona Wallpapers',
       theme: ThemeData(

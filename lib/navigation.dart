@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
-
+import 'main.dart';
+import 'aboutPage.dart';
 import 'testPage1.dart';
 import 'testPage2.dart';
-import 'main.dart';
 
-const String home = 'home';
+const String homePage = 'home';
+const String aboutPage = 'aboutPage';
 const String page1 = 'page1';
 const String page2 = 'page2';
 
 const Map<String, Widget Function(BuildContext)> routes = const {
-  home: _toHome,
+  homePage: _toHomePage,
+  aboutPage: _toAboutPage,
   page1: _toPage1,
   page2: _toPage2,
 };
 
-Widget _toHome(BuildContext context) {
+Widget _toHomePage(BuildContext context) {
   return MyHomePage();
+}
+
+Widget _toAboutPage(BuildContext context) {
+  return AboutPage();
 }
 
 Widget _toPage1(BuildContext context) {
@@ -26,7 +32,8 @@ Widget _toPage2(BuildContext context) {
   return Page2();
 }
 
-/* //Why is this not working?
+/* 
+TODO: //Why is this not working?
 var toHome = (context) => MyHomePage();
 var toPage2 = (context) => Page2();
 var toPage1 = (context) => Page1();

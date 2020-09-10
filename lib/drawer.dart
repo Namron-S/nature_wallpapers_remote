@@ -9,11 +9,10 @@ class NavigationDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           _createHeader(),
-          Divider(),
           ListTile(
             title: Text('Go to Home'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, navi.home);
+              Navigator.pushReplacementNamed(context, navi.homePage);
             },
           ),
           ListTile(
@@ -26,6 +25,13 @@ class NavigationDrawer extends StatelessWidget {
             title: Text('Go to Page 2'),
             onTap: () {
               Navigator.pushReplacementNamed(context, navi.page2);
+            },
+          ),
+          Divider(),
+          ListTile(
+            title: Text('About'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, navi.aboutPage);
             },
           ),
           //_createDrawerItem(icon: Icons.home, text: 'Page 1'),
