@@ -1,10 +1,11 @@
+import 'package:corona_wallpaper_app/drawer.dart';
 import 'package:corona_wallpaper_app/wall_paper_widget.dart';
 import 'package:flutter/material.dart';
 import 'model.dart';
 import 'network.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
-
+import 'navigation.dart' as navi;
 //TODO: Implement hamburger-menue
 //TODO: Implement favorites, About-Section
 //TODO: use xtra thread/isolate for downloading pictures
@@ -22,12 +23,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: navi.home,
+      routes: navi.routes,
       title: 'Corona Wallpapers',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      //home: MyHomePage(),
     );
   }
 }
@@ -53,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: NavigationDrawer(),
         appBar: AppBar(
           title: Text('Corona Wallpapers'),
         ),
