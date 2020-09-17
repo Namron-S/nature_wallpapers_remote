@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'navigation.dart' as navi;
+import 'navigation/navigation.dart' as navi;
 
 //TODO: Implement favorites
 //TODO: Use xtra thread/isolate for downloading pictures?
 //TODO: Use unsplash.api?
 //TODO: Implement guided tour.
+//TODO: UI-Styling (Icons, ...)
 
 void main() {
   runApp(MyApp());

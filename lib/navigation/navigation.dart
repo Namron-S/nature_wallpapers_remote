@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/pageAbout.dart';
-import 'pages/pageWallPapers.dart';
-import 'pages/pageFavorites.dart';
+import '../pages/pageAbout.dart';
+import '../pages/pageWallPapers.dart';
 
 const String pageFavorites = 'pageFavorites';
 const String pageWallpaperCorona = 'pageWallpaperCorona';
@@ -18,7 +17,9 @@ const Map<String, Widget Function(BuildContext)> routes = const {
 };
 
 Widget _toPageFavorites(BuildContext context) {
-  return PageFavorites();
+  return PageWallPaper(
+    query: 'Favorites',
+  );
 }
 
 Widget _toPageHome(BuildContext context) {

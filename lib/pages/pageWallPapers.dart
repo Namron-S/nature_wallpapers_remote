@@ -2,7 +2,7 @@ import '../model.dart';
 import '../network.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
-import 'package:corona_wallpaper_app/drawer.dart';
+import 'package:corona_wallpaper_app/navigation/drawer.dart';
 import 'package:corona_wallpaper_app/wall_paper_widget.dart';
 import 'package:flutter/material.dart';
 
