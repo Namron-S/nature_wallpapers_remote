@@ -2,6 +2,7 @@ class Photo {
   int id, width, height;
   String url, photographer, photographerUrl;
   int photographerId;
+  bool isFavorite;
   Source src;
 
   Photo(
@@ -12,6 +13,7 @@ class Photo {
       this.photographer,
       this.photographerUrl,
       this.photographerId,
+      this.isFavorite = false,
       this.src});
 
   Map<String, dynamic> toJson() => {
@@ -22,6 +24,7 @@ class Photo {
         'photographer': photographer,
         'photographerUrl': photographerUrl,
         'photographerId': photographerId,
+        'isFavorite': isFavorite,
         'src': src,
       };
 
@@ -34,6 +37,7 @@ class Photo {
         photographer: jsonMap['photographer'],
         photographerUrl: jsonMap['photographer_url'],
         photographerId: jsonMap['photographer_id'],
+        isFavorite: jsonMap['isFavorite'],
         src: Source.fromJson(jsonMap['src']));
   }
 }
