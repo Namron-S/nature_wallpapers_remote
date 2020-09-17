@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'pages/pageAbout.dart';
 import 'pages/pageWallPapers.dart';
+import 'pages/pageFavorites.dart';
 
+const String pageFavorites = 'pageFavorites';
 const String pageWallpaperCorona = 'pageWallpaperCorona';
 const String pageWallpaperNature = 'pageWallpaperNature';
 const String pageWallpaperCity = 'pageWallpaperCity';
 const String pageAbout = 'pageAbout';
 
 const Map<String, Widget Function(BuildContext)> routes = const {
+  pageFavorites: _toPageFavorites,
   pageWallpaperCorona: _toPageHome,
   pageWallpaperNature: _toPageNature,
   pageWallpaperCity: _toPageCity,
   pageAbout: _toPageAbout,
 };
+
+Widget _toPageFavorites(BuildContext context) {
+  return PageFavorites();
+}
 
 Widget _toPageHome(BuildContext context) {
   return PageWallPaper(

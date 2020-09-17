@@ -10,6 +10,13 @@ class NavigationDrawer extends StatelessWidget {
         children: <Widget>[
           _createHeader(),
           ListTile(
+            title: Text('Favorites'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, navi.pageFavorites);
+            },
+          ),
+          Divider(),
+          ListTile(
             title: Text('Corona'),
             onTap: () {
               Navigator.pushReplacementNamed(context, navi.pageWallpaperCorona);
