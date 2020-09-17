@@ -37,13 +37,24 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
   );
 }
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   final String photoUrl;
 
   DetailScreen({Key key, @required this.photoUrl}) : super(key: key);
 
-  void _addToFavorites() {
-    print('Todo: Add ${this.photoUrl} to favorites.');
+  @override
+  _DetailScreenState createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  bool _isFavorite = false;
+
+  void _toggleFavorites() {
+    setState(() {
+      _isFavorite = !_isFavorite;
+    });
+
+    print('Todo: Add ${this.widget.photoUrl} to favorites.');
   }
 
   void _setWallPaper(
@@ -56,7 +67,7 @@ class DetailScreen extends StatelessWidget {
     DefaultCacheManager dfltCchMngr = new DefaultCacheManager();
 
     try {
-      var file = await dfltCchMngr.getSingleFile(this.photoUrl);
+      var file = await dfltCchMngr.getSingleFile(this.widget.photoUrl);
       result = await WallpaperManager.setWallpaperFromFile(file.path, location);
     } on PlatformException {
       result = 'Failed to get wallpaper';
@@ -70,7 +81,7 @@ class DetailScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(),
         body: Center(
-          child: CachedNetworkImage(imageUrl: this.photoUrl),
+          child: CachedNetworkImage(imageUrl: this.widget.photoUrl),
         ),
         floatingActionButton: Builder(
           builder: (context) => Row(
@@ -100,12 +111,16 @@ class DetailScreen extends StatelessWidget {
               FloatingActionButton(
                 heroTag: 'ButtonFavorites',
                 onPressed: () {
-                  _addToFavorites();
-                  Scaffold.of(context).showSnackBar(
-                      SnackBar(content: Text('Added to favorites.')));
+                  _toggleFavorites();
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                      content: _isFavorite
+                          ? Text('Added to favorites.')
+                          : Text('Removed from favorites.')));
                 },
-                tooltip: 'Add to favorites',
-                child: Icon(Icons.favorite),
+                tooltip:
+                    _isFavorite ? 'Remove from favorites' : 'Add to favorites',
+                child:
+                    Icon(_isFavorite ? Icons.favorite : Icons.favorite_border),
               ),
             ],
           ),
