@@ -42,6 +42,10 @@ class DetailScreen extends StatelessWidget {
 
   DetailScreen({Key key, @required this.photoUrl}) : super(key: key);
 
+  void _addToFavorites() {
+    print('Todo: Add ${this.photoUrl} to favorites.');
+  }
+
   void _setWallPaper(
       {@required bool asHomeScreen, @required bool asLockScreen}) async {
     int location;
@@ -92,6 +96,16 @@ class DetailScreen extends StatelessWidget {
                 },
                 tooltip: 'Set as Locksreen',
                 child: Icon(Icons.screen_lock_portrait),
+              ),
+              FloatingActionButton(
+                heroTag: 'ButtonFavorites',
+                onPressed: () {
+                  _addToFavorites();
+                  Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text('Added to favorites.')));
+                },
+                tooltip: 'Add to favorites',
+                child: Icon(Icons.favorite),
               ),
             ],
           ),
