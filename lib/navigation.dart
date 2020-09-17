@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'aboutPage.dart';
-import 'testPage1.dart';
-import 'testPage2.dart';
+import 'pages/pageAbout.dart';
+import 'pages/pageWallPapers.dart';
 
-const String homePage = 'home';
-const String aboutPage = 'aboutPage';
-const String page1 = 'page1';
-const String page2 = 'page2';
+const String pageWallpaperCorona = 'pageWallpaperCorona';
+const String pageWallpaperNature = 'pageWallpaperNature';
+const String pageWallpaperCity = 'pageWallpaperCity';
+const String pageAbout = 'pageAbout';
 
 const Map<String, Widget Function(BuildContext)> routes = const {
-  homePage: _toHomePage,
-  aboutPage: _toAboutPage,
-  page1: _toPage1,
-  page2: _toPage2,
+  pageWallpaperCorona: _toPageHome,
+  pageWallpaperNature: _toPageNature,
+  pageWallpaperCity: _toPageCity,
+  pageAbout: _toPageAbout,
 };
 
-Widget _toHomePage(BuildContext context) {
-  return MyHomePage();
+Widget _toPageHome(BuildContext context) {
+  return PageWallPaper(
+    query: 'Corona',
+  );
 }
 
-Widget _toAboutPage(BuildContext context) {
+Widget _toPageNature(BuildContext context) {
+  return PageWallPaper(query: 'Nature');
+}
+
+Widget _toPageCity(BuildContext context) {
+  return PageWallPaper(
+    query: 'City',
+  );
+}
+
+Widget _toPageAbout(BuildContext context) {
   return AboutPage();
-}
-
-Widget _toPage1(BuildContext context) {
-  return Page1();
-}
-
-Widget _toPage2(BuildContext context) {
-  return Page2();
 }
 
 /* 

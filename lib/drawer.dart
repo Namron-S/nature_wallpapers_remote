@@ -10,32 +10,30 @@ class NavigationDrawer extends StatelessWidget {
         children: <Widget>[
           _createHeader(),
           ListTile(
-            title: Text('Go to Home'),
+            title: Text('Corona'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, navi.homePage);
+              Navigator.pushReplacementNamed(context, navi.pageWallpaperCorona);
             },
           ),
           ListTile(
-            title: Text('Go to Page 1'),
+            title: Text('Nature'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, navi.page1);
+              Navigator.pushReplacementNamed(context, navi.pageWallpaperNature);
             },
           ),
           ListTile(
-            title: Text('Go to Page 2'),
+            title: Text('City'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, navi.page2);
+              Navigator.pushReplacementNamed(context, navi.pageWallpaperCity);
             },
           ),
           Divider(),
           ListTile(
             title: Text('About'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, navi.aboutPage);
+              Navigator.pushReplacementNamed(context, navi.pageAbout);
             },
           ),
-          //_createDrawerItem(icon: Icons.home, text: 'Page 1'),
-          //_createDrawerItem(icon: Icons.home, text: 'Page 2'),
         ],
       ),
     );
