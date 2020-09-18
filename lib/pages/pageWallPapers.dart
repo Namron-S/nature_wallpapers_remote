@@ -11,18 +11,16 @@ class PageWallPaper extends StatefulWidget {
   final String query;
 
   @override
-  _PageWallPaperState createState() => _PageWallPaperState(query);
+  _PageWallPaperState createState() => _PageWallPaperState();
 }
 
 class _PageWallPaperState extends State<PageWallPaper> {
-  _PageWallPaperState(this.query);
   Future<List<Photo>> photoList;
-  final String query;
 
   @override
   void initState() {
     super.initState();
-    photoList = getPhotos(query);
+    photoList = getPhotos(widget.query);
     if (Device.get().isPhone)
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
@@ -32,7 +30,7 @@ class _PageWallPaperState extends State<PageWallPaper> {
     return Scaffold(
         drawer: NavigationDrawer(),
         appBar: AppBar(
-          title: Text('$query Wallpapers'),
+          title: Text('${widget.query} Wallpapers'),
         ),
         body: Center(
           child: FutureBuilder<List<Photo>>(
