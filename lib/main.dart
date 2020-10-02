@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'navigation/navigation.dart' as navi;
+import 'model.dart';
 
 //TODO: Implement favorites
 //TODO: Use xtra thread/isolate for downloading pictures?
@@ -8,7 +10,12 @@ import 'navigation/navigation.dart' as navi;
 //TODO: UI-Styling (Icons, ...)
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => FavoriteList(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

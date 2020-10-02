@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Photo {
   int id, width, height;
   String url, photographer, photographerUrl;
@@ -77,4 +79,18 @@ class Source {
   }
 
   String original, large2x, large, medium, small, portrait, landscape, tiny;
+}
+
+class FavoriteList extends ChangeNotifier {
+  List<Photo> _favoriteList;
+
+  void removeFavorite(Photo photo) {
+    _favoriteList.remove(photo);
+    notifyListeners();
+  }
+
+  void addFavorite(Photo photo) {
+    _favoriteList.add(photo);
+    notifyListeners();
+  }
 }
