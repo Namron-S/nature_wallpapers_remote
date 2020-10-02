@@ -7,6 +7,17 @@ class Photo {
   bool isFavorite;
   Source src;
 
+  bool operator ==(Object other) {
+    // TODO: Implement comparison for equality in a right way!!!!!!
+    if (other is Photo) {
+      if (this.id == other.id)
+        return true;
+      else
+        return false;
+    } else
+      return false;
+  }
+
   Photo(
       {this.id,
       this.width,
@@ -45,6 +56,8 @@ class Photo {
 }
 
 class Source {
+  String original, large2x, large, medium, small, portrait, landscape, tiny;
+
   Source(
       {this.original,
       this.large2x,
@@ -77,20 +90,18 @@ class Source {
         landscape: jsonMap['landscape'],
         tiny: jsonMap['tiny']);
   }
-
-  String original, large2x, large, medium, small, portrait, landscape, tiny;
 }
 
 class FavoriteList extends ChangeNotifier {
-  List<Photo> _favoriteList;
+  List<Photo> favoriteList = [];
 
   void removeFavorite(Photo photo) {
-    _favoriteList.remove(photo);
+    favoriteList.remove(photo);
     notifyListeners();
   }
 
   void addFavorite(Photo photo) {
-    _favoriteList.add(photo);
+    favoriteList.add(photo);
     notifyListeners();
   }
 }

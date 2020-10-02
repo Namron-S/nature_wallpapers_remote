@@ -4,6 +4,7 @@ import 'model.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wallpaper_manager/wallpaper_manager.dart';
+import 'package:provider/provider.dart';
 
 Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
   return OrientationBuilder(
@@ -22,8 +23,7 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return DetailScreen(
-                        photoUrl: photoList[index].src.portrait);
+                    return DetailScreen(photo: photoList[index]);
                   }));
                 },
                 child: CachedNetworkImage(
@@ -37,24 +37,134 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
   );
 }
 
-class DetailScreen extends StatefulWidget {
-  final String photoUrl;
+class DetailScreen extends StatelessWidget {
+  final Photo photo;
 
-  DetailScreen({Key key, @required this.photoUrl}) : super(key: key);
+  const DetailScreen({Key key, @required this.photo}) : super(key: key);
+
+  void _setWallPaper(
+      {@required bool asHomeScreen, @required bool asLockScreen}) async {
+    int location;
+    String result;
+
+    if (asHomeScreen) location = WallpaperManager.HOME_SCREEN;
+    if (asLockScreen) location = WallpaperManager.LOCK_SCREEN;
+    DefaultCacheManager dfltCchMngr = new DefaultCacheManager();
+
+    try {
+      var file = await dfltCchMngr.getSingleFile(this.photo.src.portrait);
+      result = await WallpaperManager.setWallpaperFromFile(file.path, location);
+    } on PlatformException {
+      result = 'Failed to get wallpaper';
+    }
+    print(result);
+  }
 
   @override
-  _DetailScreenState createState() => _DetailScreenState();
+  Widget build(BuildContext context) {
+    bool _isFavorite =
+        Provider.of<FavoriteList>(context).favoriteList.contains(this.photo);
+    return Container(
+      child: Scaffold(
+        appBar: AppBar(),
+        body: Center(
+          child: CachedNetworkImage(imageUrl: this.photo.src.portrait),
+        ),
+        floatingActionButton: Builder(
+          builder: (context) => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              FloatingActionButton(
+                //heroTag muss gesetzt werden, sonst Exception: there are multiple heroes that share the same tag
+                heroTag: 'ButtonHomeScreen',
+                onPressed: () {
+                  _setWallPaper(asHomeScreen: true, asLockScreen: false);
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Wallpaper was set as homescreen.')));
+                },
+                tooltip: 'Set as Homescreen',
+                child: Icon(Icons.home),
+              ),
+              FloatingActionButton(
+                heroTag: 'ButtonLockScreen',
+                onPressed: () {
+                  _setWallPaper(asHomeScreen: false, asLockScreen: true);
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Wallpaper was set as lockscreen.')));
+                },
+                tooltip: 'Set as Locksreen',
+                child: Icon(Icons.screen_lock_portrait),
+              ),
+              FloatingActionButton(
+                heroTag: 'ButtonFavorites',
+                onPressed: () {
+                  _toggleFavorites(context);
+                },
+                tooltip:
+                    _isFavorite ? 'Remove from favorites' : 'Add to favorites',
+                child:
+                    Icon(_isFavorite ? Icons.favorite : Icons.favorite_border),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _toggleFavorites(BuildContext context) {
+    String message;
+
+    if (Provider.of<FavoriteList>(context, listen: false)
+        .favoriteList
+        .contains(this.photo)) {
+      Provider.of<FavoriteList>(context, listen: false)
+          .removeFavorite(this.photo);
+      message = 'Removed from favorites.';
+    } else {
+      Provider.of<FavoriteList>(context, listen: false).addFavorite(this.photo);
+      message = 'Added to favorites.';
+    }
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      duration: Duration(milliseconds: 500),
+    ));
+    Provider.of<FavoriteList>(context, listen: false)
+        .favoriteList
+        .forEach((element) {
+      print(element.id);
+    });
+  }
 }
 
-class _DetailScreenState extends State<DetailScreen> {
-  bool _isFavorite = false;
+class DetailScreen2 extends StatefulWidget {
+  //final String photoUrl; =photoList[index].src.portrait
+  final Photo photo;
+
+  DetailScreen2({Key key, @required this.photo}) : super(key: key);
+
+  @override
+  _DetailScreen2State createState() => _DetailScreen2State();
+}
+
+class _DetailScreen2State extends State<DetailScreen2> {
+  bool _isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    this._isFavorite =
+        Provider.of<FavoriteList>(context).favoriteList.contains(widget.photo);
+  }
 
   void _toggleFavorites() {
     setState(() {
       _isFavorite = !_isFavorite;
+      if (_isFavorite)
+        Provider.of<FavoriteList>(context).addFavorite(widget.photo);
+      else
+        Provider.of<FavoriteList>(context).removeFavorite(widget.photo);
     });
-
-    print('Todo: Add ${this.widget.photoUrl} to favorites.');
   }
 
   void _setWallPaper(
@@ -67,7 +177,8 @@ class _DetailScreenState extends State<DetailScreen> {
     DefaultCacheManager dfltCchMngr = new DefaultCacheManager();
 
     try {
-      var file = await dfltCchMngr.getSingleFile(this.widget.photoUrl);
+      var file =
+          await dfltCchMngr.getSingleFile(this.widget.photo.src.portrait);
       result = await WallpaperManager.setWallpaperFromFile(file.path, location);
     } on PlatformException {
       result = 'Failed to get wallpaper';
@@ -81,7 +192,7 @@ class _DetailScreenState extends State<DetailScreen> {
       child: Scaffold(
         appBar: AppBar(),
         body: Center(
-          child: CachedNetworkImage(imageUrl: this.widget.photoUrl),
+          child: CachedNetworkImage(imageUrl: this.widget.photo.src.portrait),
         ),
         floatingActionButton: Builder(
           builder: (context) => Row(
