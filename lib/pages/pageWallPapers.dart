@@ -1,3 +1,6 @@
+import 'package:provider/provider.dart';
+
+import '../helpers.dart';
 import '../model.dart';
 import '../network.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +17,8 @@ class PageWallPaper extends StatefulWidget {
   _PageWallPaperState createState() => _PageWallPaperState();
 }
 
-class _PageWallPaperState extends State<PageWallPaper> {
+class _PageWallPaperState extends State<PageWallPaper>
+    with WidgetsBindingObserver {
   Future<List<Photo>> photoList;
 
   @override
@@ -23,6 +27,21 @@ class _PageWallPaperState extends State<PageWallPaper> {
     photoList = getPhotos(widget.query);
     if (Device.get().isPhone)
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
+    if (state == AppLifecycleState.inactive) {
+      await createPhotoListFile('favorites',
+          Provider.of<FavoriteList>(context, listen: false).photoList);
+    }
+  }
+
+  @override
+  void dispose() async {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
