@@ -24,7 +24,13 @@ class _PageWallPaperState extends State<PageWallPaper>
   @override
   void initState() {
     super.initState();
-    photoList = getPhotos(widget.query);
+    if (widget.query == 'Favorites') {
+      photoList = Future<List<Photo>>.value(
+          Provider.of<FavoriteList>(context, listen: false).photoList);
+    } else {
+      photoList = getPhotos(widget.query);
+    }
+
     if (Device.get().isPhone)
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     WidgetsBinding.instance.addObserver(this);
