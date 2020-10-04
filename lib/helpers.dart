@@ -4,6 +4,17 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 //import 'dart:developer';
 
+Future<List<Photo>> getFavoritesList() async {
+  List<Photo> photoList = List<Photo>();
+
+  if (await _photoListFileExists('favorites'))
+    photoList = await getPhotoListFromFileSystem('favorites');
+  else
+    await createPhotoListFile('favorites', photoList);
+
+  return photoList;
+}
+
 Future<List<Photo>> getPhotoListFromFileSystem(String name) async {
   List<Photo> photoList = List<Photo>();
   final path = await _localPath;

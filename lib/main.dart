@@ -2,17 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'navigation/navigation.dart' as navi;
 import 'model.dart';
+import 'helpers.dart';
 
 //TODO: Implement favorites
+//TODO: implement 'waiting start Screen'?
 //TODO: Use xtra thread/isolate for downloading pictures?
 //TODO: Use unsplash.api?
 //TODO: Implement guided tour.
 //TODO: UI-Styling (Icons, ...)
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  List<Photo> favoritePhotos = await getFavoritesList();
+  FavoriteList favoriteList = FavoriteList();
+  favoriteList.photoList = favoritePhotos;
   runApp(
     ChangeNotifierProvider(
-      create: (_) => FavoriteList(),
+      create: (_) => favoriteList,
       child: MyApp(),
     ),
   );

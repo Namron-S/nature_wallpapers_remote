@@ -63,7 +63,7 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _isFavorite =
-        Provider.of<FavoriteList>(context).favoriteList.contains(this.photo);
+        Provider.of<FavoriteList>(context).photoList.contains(this.photo);
     return Container(
       child: Scaffold(
         appBar: AppBar(),
@@ -116,7 +116,7 @@ class DetailScreen extends StatelessWidget {
     String message;
 
     if (Provider.of<FavoriteList>(context, listen: false)
-        .favoriteList
+        .photoList
         .contains(this.photo)) {
       Provider.of<FavoriteList>(context, listen: false)
           .removeFavorite(this.photo);
@@ -130,7 +130,7 @@ class DetailScreen extends StatelessWidget {
       duration: Duration(milliseconds: 500),
     ));
     Provider.of<FavoriteList>(context, listen: false)
-        .favoriteList
+        .photoList
         .forEach((element) {
       print(element.id);
     });
@@ -154,7 +154,7 @@ class _DetailScreen2State extends State<DetailScreen2> {
   void initState() {
     super.initState();
     this._isFavorite =
-        Provider.of<FavoriteList>(context).favoriteList.contains(widget.photo);
+        Provider.of<FavoriteList>(context).photoList.contains(widget.photo);
   }
 
   void _toggleFavorites() {
