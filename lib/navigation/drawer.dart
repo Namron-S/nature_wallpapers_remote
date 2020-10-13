@@ -48,6 +48,13 @@ class NavigationDrawer extends StatelessWidget {
                   context, navi.pageWallPaperNetwork);
             },
           ),
+          ListTile(
+            title: Text('Teamwork'),
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, navi.pageWallPaperTeamwork);
+            },
+          ),
           Divider(),
           ListTile(
             title: Text('About'),
