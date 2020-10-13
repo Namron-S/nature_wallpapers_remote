@@ -4,11 +4,12 @@ import 'navigation/navigation.dart' as navi;
 import 'model.dart';
 import 'helpers.dart';
 
+//TODO: UI-Styling (Icons, ...)
 //TODO: implement 'waiting start Screen'?
+//TODO: Implement guided tour.
+//************************************************************ */
 //TODO: Use xtra thread/isolate for downloading pictures?
 //TODO: Use unsplash.api?
-//TODO: Implement guided tour.
-//TODO: UI-Styling (Icons, ...)
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
