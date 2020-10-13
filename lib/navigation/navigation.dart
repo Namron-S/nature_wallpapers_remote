@@ -7,6 +7,7 @@ const String pageWallpaperCorona = 'pageWallpaperCorona';
 const String pageWallpaperNature = 'pageWallpaperNature';
 const String pageWallpaperCity = 'pageWallpaperCity';
 const String pageWallPaperSupport = 'pageWallpaperSupport';
+const String pageWallPaperNetwork = 'pageWallpaperNetwork';
 const String pageAbout = 'pageAbout';
 
 const Map<String, Widget Function(BuildContext)> routes = const {
@@ -15,8 +16,15 @@ const Map<String, Widget Function(BuildContext)> routes = const {
   pageWallpaperNature: _toPageNature,
   pageWallpaperCity: _toPageCity,
   pageWallPaperSupport: _toPageSupport,
+  pageWallPaperNetwork: _toPageNetwork,
   pageAbout: _toPageAbout,
 };
+
+Widget _toPageNetwork(BuildContext context) {
+  return PageWallPaper(
+    query: 'Network',
+  );
+}
 
 Widget _toPageSupport(BuildContext context) {
   return PageWallPaper(
