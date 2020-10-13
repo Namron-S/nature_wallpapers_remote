@@ -50,6 +50,20 @@ class _PageWallPaperState extends State<PageWallPaper>
     super.dispose();
   }
 
+  void refreshFuture() {
+    setState(() {
+      photoList = Future<List<Photo>>.value(
+          Provider.of<FavoriteList>(context, listen: false).photoList);
+    });
+
+    print('In PageWallPaperSate - refreshFuture');
+    Provider.of<FavoriteList>(context, listen: false)
+        .photoList
+        .forEach((element) {
+      print(element.id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +76,12 @@ class _PageWallPaperState extends State<PageWallPaper>
               future: photoList,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return getWallPapersWidget(snapshot.data, context);
+                  return getWallPapersWidget(
+                    snapshot.data,
+                    context,
+                    widget.query,
+                    refreshFuture,
+                  );
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }

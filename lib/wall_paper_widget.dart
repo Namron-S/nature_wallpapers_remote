@@ -6,7 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wallpaper_manager/wallpaper_manager.dart';
 import 'package:provider/provider.dart';
 
-Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
+Widget getWallPapersWidget(List<Photo> photoList, BuildContext context,
+    String pageName, Function refreshFuture) {
   return OrientationBuilder(
     builder: (context, orientation) {
       return GridView.builder(
@@ -23,7 +24,11 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return DetailScreen(photo: photoList[index]);
+                    return DetailScreen(
+                      photo: photoList[index],
+                      pageName: pageName,
+                      refreshFuture: refreshFuture,
+                    );
                   }));
                 },
                 child: CachedNetworkImage(
@@ -39,8 +44,15 @@ Widget getWallPapersWidget(List<Photo> photoList, BuildContext context) {
 
 class DetailScreen extends StatelessWidget {
   final Photo photo;
+  final String pageName;
+  final Function refreshFuture;
 
-  const DetailScreen({Key key, @required this.photo}) : super(key: key);
+  const DetailScreen(
+      {Key key,
+      @required this.photo,
+      @required this.pageName,
+      @required this.refreshFuture})
+      : super(key: key);
 
   void _setWallPaper(
       {@required bool asHomeScreen, @required bool asLockScreen}) async {
@@ -98,7 +110,7 @@ class DetailScreen extends StatelessWidget {
               FloatingActionButton(
                 heroTag: 'ButtonFavorites',
                 onPressed: () {
-                  _toggleFavorites(context);
+                  _toggleFavorites(context, pageName, refreshFuture);
                 },
                 tooltip:
                     _isFavorite ? 'Remove from favorites' : 'Add to favorites',
@@ -112,7 +124,8 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  void _toggleFavorites(BuildContext context) {
+  void _toggleFavorites(
+      BuildContext context, String pageName, Function refreshFuture) {
     String message;
 
     if (Provider.of<FavoriteList>(context, listen: false)
@@ -129,11 +142,19 @@ class DetailScreen extends StatelessWidget {
       content: Text(message),
       duration: Duration(milliseconds: 500),
     ));
-    Provider.of<FavoriteList>(context, listen: false)
+
+    //TODO: remove Debugging
+    /* Provider.of<FavoriteList>(context, listen: false)
         .photoList
         .forEach((element) {
       print(element.id);
-    });
+    });*/
+
+    //If we are in the favoritePage, we have to update the future-Builder:
+    if (pageName == 'Favorites') {
+      //TODO: use parent Callback
+      refreshFuture();
+    }
   }
 }
 
