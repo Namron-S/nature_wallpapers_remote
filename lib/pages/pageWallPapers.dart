@@ -6,7 +6,7 @@ import '../network.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:corona_wallpaper_app/navigation/drawer.dart';
-import 'package:corona_wallpaper_app/wall_paper_widget.dart';
+import 'package:corona_wallpaper_app/getWallPapersWidget.dart';
 import 'package:flutter/material.dart';
 
 class PageWallPaper extends StatefulWidget {
@@ -54,13 +54,6 @@ class _PageWallPaperState extends State<PageWallPaper>
     setState(() {
       photoList = Future<List<Photo>>.value(
           Provider.of<FavoriteList>(context, listen: false).photoList);
-    });
-
-    print('In PageWallPaperSate - refreshFuture');
-    Provider.of<FavoriteList>(context, listen: false)
-        .photoList
-        .forEach((element) {
-      print(element.id);
     });
   }
 

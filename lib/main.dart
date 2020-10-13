@@ -4,7 +4,6 @@ import 'navigation/navigation.dart' as navi;
 import 'model.dart';
 import 'helpers.dart';
 
-//TODO: Implement favorites
 //TODO: implement 'waiting start Screen'?
 //TODO: Use xtra thread/isolate for downloading pictures?
 //TODO: Use unsplash.api?
