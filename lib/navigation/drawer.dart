@@ -55,6 +55,12 @@ class NavigationDrawer extends StatelessWidget {
                   context, navi.pageWallPaperTeamwork);
             },
           ),
+          ListTile(
+            title: Text('Dark'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, navi.pageWallPaperDark);
+            },
+          ),
           Divider(),
           ListTile(
             title: Text('About'),
