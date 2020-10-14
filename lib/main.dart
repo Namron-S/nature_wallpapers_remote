@@ -5,8 +5,11 @@ import 'model.dart';
 import 'helpers.dart';
 
 //TODO: UI-Styling (Icons, ...)
+//TODO: Fill In AboutPage
+//TODO: Colorful (black?) Background
 //TODO: implement 'waiting start Screen'?
 //TODO: Implement guided tour.
+//TODO: Implement Dark-Mode
 //************************************************************ */
 //TODO: Use xtra thread/isolate for downloading pictures?
 //TODO: Use unsplash.api?
@@ -29,11 +32,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: navi.pageWallpaperCorona,
+      debugShowCheckedModeBanner: false,
+      initialRoute: 'Nature',
       routes: navi.routes,
       title: 'Corona Wallpapers',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
     );

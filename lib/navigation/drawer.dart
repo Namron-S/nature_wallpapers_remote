@@ -8,77 +8,38 @@ class NavigationDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          _createHeader(),
-          ListTile(
-            title: Text('Favorites'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, navi.pageFavorites);
-            },
-          ),
+          _createHeader(context),
+          _createListTile('Favorites', context),
           Divider(),
-          ListTile(
-            title: Text('Corona'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, navi.pageWallpaperCorona);
-            },
-          ),
-          ListTile(
-            title: Text('Nature'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, navi.pageWallpaperNature);
-            },
-          ),
-          ListTile(
-            title: Text('City'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, navi.pageWallpaperCity);
-            },
-          ),
-          ListTile(
-            title: Text('Support'),
-            onTap: () {
-              Navigator.pushReplacementNamed(
-                  context, navi.pageWallPaperSupport);
-            },
-          ),
-          ListTile(
-            title: Text('Network'),
-            onTap: () {
-              Navigator.pushReplacementNamed(
-                  context, navi.pageWallPaperNetwork);
-            },
-          ),
-          ListTile(
-            title: Text('Teamwork'),
-            onTap: () {
-              Navigator.pushReplacementNamed(
-                  context, navi.pageWallPaperTeamwork);
-            },
-          ),
-          ListTile(
-            title: Text('Dark'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, navi.pageWallPaperDark);
-            },
-          ),
+          _createListTile('Corona', context),
+          _createListTile('Nature', context),
+          _createListTile('City', context),
+          _createListTile('Support', context),
+          _createListTile('Network', context),
+          _createListTile('Teamwork', context),
+          _createListTile('Dark', context),
           Divider(),
-          ListTile(
-            title: Text('About'),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, navi.pageAbout);
-            },
-          ),
+          _createListTile('About', context),
         ],
       ),
     );
   }
 }
 
-Widget _createHeader() {
+Widget _createListTile(String pageName, BuildContext context) {
+  return ListTile(
+    title: Text(pageName),
+    onTap: () {
+      Navigator.pushReplacementNamed(context, pageName);
+    },
+  );
+}
+
+Widget _createHeader(BuildContext context) {
   return DrawerHeader(
     child: Text('Drawer Header'),
     decoration: BoxDecoration(
-      color: Colors.blue,
+      color: Theme.of(context).accentColor,
     ),
   );
 }

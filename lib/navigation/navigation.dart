@@ -2,26 +2,16 @@ import 'package:flutter/material.dart';
 import '../pages/pageAbout.dart';
 import '../pages/pageWallPapers.dart';
 
-const String pageFavorites = 'pageFavorites';
-const String pageWallpaperCorona = 'pageWallpaperCorona';
-const String pageWallpaperNature = 'pageWallpaperNature';
-const String pageWallpaperCity = 'pageWallpaperCity';
-const String pageWallPaperSupport = 'pageWallpaperSupport';
-const String pageWallPaperNetwork = 'pageWallpaperNetwork';
-const String pageWallPaperTeamwork = 'pageWallpaperTeamwork';
-const String pageWallPaperDark = 'pageWallpaperDark';
-const String pageAbout = 'pageAbout';
-
 const Map<String, Widget Function(BuildContext)> routes = const {
-  pageFavorites: _toPageFavorites,
-  pageWallPaperDark: _toPageDark,
-  pageWallPaperTeamwork: _toPageTeamwork,
-  pageWallpaperCorona: _toPageHome,
-  pageWallpaperNature: _toPageNature,
-  pageWallpaperCity: _toPageCity,
-  pageWallPaperSupport: _toPageSupport,
-  pageWallPaperNetwork: _toPageNetwork,
-  pageAbout: _toPageAbout,
+  'Favorites': _toPageFavorites,
+  'Dark': _toPageDark,
+  'Teamwork': _toPageTeamwork,
+  'Corona': _toPageHome,
+  'Nature': _toPageNature,
+  'City': _toPageCity,
+  'Support': _toPageSupport,
+  'Network': _toPageNetwork,
+  'About': _toPageAbout,
 };
 
 Widget _toPageDark(BuildContext context) {
