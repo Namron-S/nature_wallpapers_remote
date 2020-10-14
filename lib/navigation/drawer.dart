@@ -1,28 +1,36 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'navigation.dart' as navi;
 
 class NavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 180,
-      child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            _createHeader(context),
-            _createListTile('Favorites', context),
-            Divider(),
-            _createListTile('Corona', context),
-            _createListTile('Nature', context),
-            _createListTile('City', context),
-            _createListTile('Support', context),
-            _createListTile('Network', context),
-            _createListTile('Teamwork', context),
-            _createListTile('Dark', context),
-            Divider(),
-            _createListTile('About', context),
-          ],
+    return Theme(
+      data: Theme.of(context).copyWith(
+        canvasColor: Colors.white.withOpacity(0.75), //Colors.transparent,
+        //or any other color you want. e.g Colors.blue.withOpacity(0.5)
+      ),
+      child: SizedBox(
+        width: 180,
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              _createHeader(context),
+              _createListTile('Favorites', context),
+              Divider(color: Colors.red),
+              _createListTile('Corona', context),
+              _createListTile('Nature', context),
+              _createListTile('City', context),
+              _createListTile('Support', context),
+              _createListTile('Network', context),
+              _createListTile('Teamwork', context),
+              _createListTile('Dark', context),
+              Divider(color: Colors.red),
+              _createListTile('About', context),
+            ],
+          ),
         ),
       ),
     );
