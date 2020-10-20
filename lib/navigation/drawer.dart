@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/style.dart';
 import 'navigation.dart' as navi;
 
 class NavigationDrawer extends StatelessWidget {
@@ -19,7 +20,7 @@ class NavigationDrawer extends StatelessWidget {
             children: <Widget>[
               _createHeader(context),
               _createListTile('Favorites', context),
-              Divider(color: Colors.red),
+              Divider(color: Colors.black),
               _createListTile('Corona', context),
               _createListTile('Nature', context),
               _createListTile('City', context),
@@ -27,7 +28,7 @@ class NavigationDrawer extends StatelessWidget {
               _createListTile('Network', context),
               _createListTile('Teamwork', context),
               _createListTile('Dark', context),
-              Divider(color: Colors.red),
+              Divider(color: Colors.black),
               _createListTile('About', context),
             ],
           ),
@@ -48,16 +49,24 @@ Widget _createListTile(String pageName, BuildContext context) {
 
 Widget _createHeader(BuildContext context) {
   return Container(
-    height: 100,
+    height: 88, //88: found by trial & error
+    //AppBar().preferredSize.height // not working, way too short
+    //Scaffold.of(context).appBarMaxHeight, // not working, too short
+    //MediaQuery.of(context).padding.top + kToolbarHeight,// not working, too short
     child: DrawerHeader(
+      padding: EdgeInsets.only(bottom: 20),
       child: ListTile(
+        title: Text(
+          'Navigation',
+          style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
         onTap: () {
           Navigator.of(context).pop();
         },
-        trailing: Icon(Icons.menu),
+        trailing: Icon(Icons.close),
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).primaryColor,
       ),
     ),
   );
