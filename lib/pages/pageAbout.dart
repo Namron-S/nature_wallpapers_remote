@@ -34,8 +34,12 @@ was tired of all the in-app ads. So enjoy this adfree app. ;)
 
 <h3>Credits</h3>
 <p>
-All photos are provided by 
+All wallpaper photos are provided by 
 <a href="https://www.pexels.com">Pexels</a>.
+</p>
+<p>
+The app launcher icon is provided by
+<a href="https://de.vecteezy.com/gratis-vektor/tapete">Vecteezy</a>.
 </p>
 
 <h3>Acknowledgements</h3>
