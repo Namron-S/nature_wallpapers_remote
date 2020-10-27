@@ -2,40 +2,27 @@ import 'package:flutter/material.dart';
 import '../pages/pageAbout.dart';
 import '../pages/pageWallPapers.dart';
 
+/*
+beach, Clouds, Flowers, forest, landscape,
+Mountains, Nature, night,sea, Sky, Sunset, 
+*/
 const Map<String, Widget Function(BuildContext)> routes = const {
   'Favorites': _toPageFavorites,
-  'Dark': _toPageDark,
-  'Teamwork': _toPageTeamwork,
-  'Corona': _toPageHome,
-  'Nature': _toPageNature,
-  'City': _toPageCity,
-  'Support': _toPageSupport,
-  'Network': _toPageNetwork,
   'About': _toPageAbout,
+  'Beach': _toPageBeach,
+  'Clouds': _toPageClouds,
+  'Flowers': _toPageFlowers,
+  'Forest': _toPageForest,
+  'Landscape': _toPageLandscape,
+  'Mountains': _toPageMountains,
+  'Nature': _toPageNature,
+  'Night': _toPageNight,
+  'Sea': _toPageSea,
+  'Sky': _toPageSky,
+  'Sunset': _toPageSunset
 };
-
-Widget _toPageDark(BuildContext context) {
-  return PageWallPaper(
-    query: 'Dark',
-  );
-}
-
-Widget _toPageTeamwork(BuildContext context) {
-  return PageWallPaper(
-    query: 'Teamwork',
-  );
-}
-
-Widget _toPageNetwork(BuildContext context) {
-  return PageWallPaper(
-    query: 'Network',
-  );
-}
-
-Widget _toPageSupport(BuildContext context) {
-  return PageWallPaper(
-    query: 'Support',
-  );
+Widget _toPageAbout(BuildContext context) {
+  return AboutPage();
 }
 
 Widget _toPageFavorites(BuildContext context) {
@@ -44,9 +31,39 @@ Widget _toPageFavorites(BuildContext context) {
   );
 }
 
-Widget _toPageHome(BuildContext context) {
+Widget _toPageBeach(BuildContext context) {
   return PageWallPaper(
-    query: 'Corona',
+    query: 'Beach',
+  );
+}
+
+Widget _toPageClouds(BuildContext context) {
+  return PageWallPaper(
+    query: 'Clouds',
+  );
+}
+
+Widget _toPageFlowers(BuildContext context) {
+  return PageWallPaper(
+    query: 'Flowers',
+  );
+}
+
+Widget _toPageForest(BuildContext context) {
+  return PageWallPaper(
+    query: 'Forest',
+  );
+}
+
+Widget _toPageLandscape(BuildContext context) {
+  return PageWallPaper(
+    query: 'Landscape',
+  );
+}
+
+Widget _toPageMountains(BuildContext context) {
+  return PageWallPaper(
+    query: 'Mountains',
   );
 }
 
@@ -54,14 +71,28 @@ Widget _toPageNature(BuildContext context) {
   return PageWallPaper(query: 'Nature');
 }
 
-Widget _toPageCity(BuildContext context) {
+Widget _toPageNight(BuildContext context) {
   return PageWallPaper(
-    query: 'City',
+    query: 'Night',
   );
 }
 
-Widget _toPageAbout(BuildContext context) {
-  return AboutPage();
+Widget _toPageSea(BuildContext context) {
+  return PageWallPaper(
+    query: 'Sea',
+  );
+}
+
+Widget _toPageSky(BuildContext context) {
+  return PageWallPaper(
+    query: 'Sky',
+  );
+}
+
+Widget _toPageSunset(BuildContext context) {
+  return PageWallPaper(
+    query: 'Sunset',
+  );
 }
 
 /* 

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_html/style.dart';
 import 'navigation.dart' as navi;
@@ -21,13 +20,21 @@ class NavigationDrawer extends StatelessWidget {
               _createHeader(context),
               _createListTile('Favorites', context),
               Divider(color: Colors.black),
-              _createListTile('Corona', context),
+              /*
+beach, Clouds, Flowers, forest, landscape,
+Mountains, Nature, night,sea, Sky, Sunset, 
+*/
+              _createListTile('Beach', context),
+              _createListTile('Clouds', context),
+              _createListTile('Flowers', context),
+              _createListTile('Forest', context),
+              _createListTile('Landscape', context),
+              _createListTile('Mountains', context),
               _createListTile('Nature', context),
-              _createListTile('City', context),
-              _createListTile('Support', context),
-              _createListTile('Network', context),
-              _createListTile('Teamwork', context),
-              _createListTile('Dark', context),
+              _createListTile('Night', context),
+              _createListTile('Sea', context),
+              _createListTile('Sky', context),
+              _createListTile('Sunset', context),
               Divider(color: Colors.black),
               _createListTile('About', context),
             ],
