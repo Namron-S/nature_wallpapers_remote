@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: 'Nature',
       routes: navi.routes,
-      title: 'Corona Wallpapers',
+      title: 'Nature Wallpapers',
       theme: ThemeData(
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
