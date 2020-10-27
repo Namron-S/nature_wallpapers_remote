@@ -27,6 +27,7 @@ class AboutPage extends StatelessWidget {
 const htmlData = """
 <h3>About</h3>
 <p>
+A very simple and minimnalistic wallpaper app.
 This app was written because the <a href="mailto:N.Sutatyo@gmail.com">programmer
 </a> of this app 
 was tired of all the in-app ads. So enjoy this adfree app. ;)
@@ -39,7 +40,7 @@ All wallpaper photos are provided by
 </p>
 <p>
 The app launcher icon is provided by
-<a href="https://de.vecteezy.com/gratis-vektor/tapete">Vecteezy</a>.
+<a href="https://de.vecteezy.com/">Vecteezy</a>.
 </p>
 
 <h3>Acknowledgements</h3>
