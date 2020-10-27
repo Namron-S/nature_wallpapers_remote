@@ -4,16 +4,6 @@ import 'navigation/navigation.dart' as navi;
 import 'model.dart';
 import 'helpers.dart';
 
-//TODO: UI-Styling (Icons, ...)
-//TODO: Fill In AboutPage
-//TODO: Colorful (black?) Background
-//TODO: implement 'waiting start Screen'?
-//TODO: Implement guided tour.
-//TODO: Implement Dark-Mode
-//************************************************************ */
-//TODO: Use xtra thread/isolate for downloading pictures?
-//TODO: Use unsplash.api?
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   List<Photo> favoritePhotos = await getFavoritesList();
