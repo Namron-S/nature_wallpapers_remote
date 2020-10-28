@@ -37,14 +37,19 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.corona_wallpaper_app"
+        /* defaultConfig actually belongs to the ProductFlavor class
+        This means you can provide the base configuration for all flavors
+        in the defaultConfig block, and each flavor can change any of these
+        default values, such as the applicationId.
+        */
+        
+        applicationId "minimal.apps.wallpaper_app.nature"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
+    
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
