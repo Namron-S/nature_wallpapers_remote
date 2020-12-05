@@ -91,7 +91,7 @@ class DetailScreen extends StatelessWidget {
                 heroTag: 'ButtonHomeScreen',
                 onPressed: () {
                   _setWallPaper(asHomeScreen: true, asLockScreen: false);
-                  Scaffold.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('Wallpaper was set as homescreen.')));
                 },
                 tooltip: 'Set as Homescreen',
@@ -101,7 +101,7 @@ class DetailScreen extends StatelessWidget {
                 heroTag: 'ButtonLockScreen',
                 onPressed: () {
                   _setWallPaper(asHomeScreen: false, asLockScreen: true);
-                  Scaffold.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('Wallpaper was set as lockscreen.')));
                 },
                 tooltip: 'Set as Locksreen',
@@ -138,7 +138,7 @@ class DetailScreen extends StatelessWidget {
       Provider.of<FavoriteList>(context, listen: false).addFavorite(this.photo);
       message = 'Added to favorites.';
     }
-    Scaffold.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
       duration: Duration(milliseconds: 500),
     ));
