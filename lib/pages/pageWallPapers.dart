@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:provider/provider.dart';
 
 import '../helpers.dart';
@@ -76,7 +78,11 @@ class _PageWallPaperState extends State<PageWallPaper>
                     refreshFuture,
                   );
                 } else if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
+                  if (snapshot.error.runtimeType == SocketException) {
+                    return (Text('It seems like your network is offline.'));
+                  } else {
+                    return Text('Something went wrong.');
+                  }
                 }
                 return CircularProgressIndicator();
               }),
