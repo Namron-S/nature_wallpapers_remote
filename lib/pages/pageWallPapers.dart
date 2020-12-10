@@ -26,16 +26,20 @@ class _PageWallPaperState extends State<PageWallPaper>
   @override
   void initState() {
     super.initState();
+    initPhotoList();
+
+    if (Device.get().isPhone)
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  void initPhotoList() {
     if (widget.query == 'Favorites') {
       photoList = Future<List<Photo>>.value(
           Provider.of<FavoriteList>(context, listen: false).photoList);
     } else {
       photoList = getPhotos(widget.query);
     }
-
-    if (Device.get().isPhone)
-      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
@@ -52,10 +56,9 @@ class _PageWallPaperState extends State<PageWallPaper>
     super.dispose();
   }
 
-  void refreshFuture() {
+  void refreshPage() {
     setState(() {
-      photoList = Future<List<Photo>>.value(
-          Provider.of<FavoriteList>(context, listen: false).photoList);
+      initPhotoList();
     });
   }
 
@@ -75,11 +78,21 @@ class _PageWallPaperState extends State<PageWallPaper>
                     snapshot.data,
                     context,
                     widget.query,
-                    refreshFuture,
+                    refreshPage,
                   );
                 } else if (snapshot.hasError) {
                   if (snapshot.error.runtimeType == SocketException) {
-                    return (Text('It seems like your network is offline.'));
+                    return Column(
+                      children: [
+                        (Text('It seems like your network is offline.')),
+                        FlatButton(
+                          child: Text('Try again.'),
+                          onPressed: () {
+                            refreshPage();
+                          },
+                        ),
+                      ],
+                    );
                   } else {
                     return Text('Something went wrong.');
                   }

@@ -125,7 +125,7 @@ class DetailScreen extends StatelessWidget {
   }
 
   void _toggleFavorites(
-      BuildContext context, String pageName, Function refreshFuture) {
+      BuildContext context, String pageName, Function refreshPage) {
     String message;
 
     if (Provider.of<FavoriteList>(context, listen: false)
@@ -143,9 +143,8 @@ class DetailScreen extends StatelessWidget {
       duration: Duration(milliseconds: 500),
     ));
 
-    //If we are in the favoritePage, we have to update the future-Builder:
     if (pageName == 'Favorites') {
-      refreshFuture();
+      refreshPage();
     }
   }
 }

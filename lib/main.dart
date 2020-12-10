@@ -4,6 +4,9 @@ import 'navigation/navigation.dart' as navi;
 import 'model.dart';
 import 'helpers.dart';
 
+//TODO: RetryButton für SocketException (kein Netzwerk)
+//TODO: UI: right size for navigation drawer
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   List<Photo> favoritePhotos = await getFavoritesList();
