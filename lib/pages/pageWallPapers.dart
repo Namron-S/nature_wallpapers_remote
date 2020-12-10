@@ -83,9 +83,14 @@ class _PageWallPaperState extends State<PageWallPaper>
                 } else if (snapshot.hasError) {
                   if (snapshot.error.runtimeType == SocketException) {
                     return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        (Text('It seems like your network is offline.')),
+                        Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            child: (Text(
+                                'It seems like your network is offline.'))),
                         FlatButton(
+                          color: Theme.of(context).backgroundColor,
                           child: Text('Try again.'),
                           onPressed: () {
                             refreshPage();
