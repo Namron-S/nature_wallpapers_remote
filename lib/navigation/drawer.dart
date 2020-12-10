@@ -68,7 +68,7 @@ Widget _createHeader(BuildContext context) {
         onTap: () {
           Navigator.of(context).pop();
         },
-        trailing: Icon(Icons.close),
+        //trailing: Icon(Icons.close),
       ),
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
