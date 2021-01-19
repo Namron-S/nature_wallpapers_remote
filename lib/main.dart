@@ -4,7 +4,6 @@ import 'navigation/navigation.dart' as navi;
 import 'model.dart';
 import 'helpers.dart';
 
-//TODO: RetryButton für SocketException (kein Netzwerk)
 //TODO: UI: right size for navigation drawer
 
 Future<void> main() async {
@@ -26,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      debugShowMaterialGrid: false,
       initialRoute: 'Nature',
       routes: navi.routes,
       title: 'Nature Wallpapers',
