@@ -29,6 +29,7 @@
 .packages
 .pub-cache/
 .pub/
+pubspec.lock  # Except for application packages
 /build/
 
 # Web related
