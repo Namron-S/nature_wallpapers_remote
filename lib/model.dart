@@ -93,7 +93,7 @@ class Source {
 }
 
 class FavoriteList extends ChangeNotifier {
-  List<Photo> photoList = new List<Photo>();
+  List<Photo> photoList = [];
 
   void removeFavorite(Photo photo) {
     photoList.remove(photo);

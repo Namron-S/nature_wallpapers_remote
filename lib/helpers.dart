@@ -5,7 +5,7 @@ import 'dart:io';
 //import 'dart:developer';
 
 Future<List<Photo>> getFavoritesList() async {
-  List<Photo> photoList = List<Photo>();
+  List<Photo> photoList = [];
 
   if (await _photoListFileExists('favorites'))
     photoList = await getPhotoListFromFileSystem('favorites');
@@ -16,7 +16,7 @@ Future<List<Photo>> getFavoritesList() async {
 }
 
 Future<List<Photo>> getPhotoListFromFileSystem(String name) async {
-  List<Photo> photoList = List<Photo>();
+  List<Photo> photoList = [];
   final path = await _localPath;
   File file = File('$path/$name.txt');
   String jsonStr = await file.readAsString();

@@ -29,7 +29,7 @@ Future<List<Photo>> _fetchPhotos(String queryStr) async {
 
 Future<List<http.Response>> _fetch3PagesOfPhotos(
     var photoBaseUrl, final headers) async {
-  List<http.Response> responseList = List<http.Response>();
+  List<http.Response> responseList = [];
   http.Response response;
 
   while (photoBaseUrl != null && responseList.length < 3) {
@@ -60,7 +60,7 @@ String _getNextPageOfPhotos(http.Response response) {
 }
 
 List<Photo> _convertResponseListToPhotoList(List<http.Response> responseList) {
-  List<Photo> photoList = new List();
+  List<Photo> photoList = [];
   for (var response in responseList) {
     Map<String, dynamic> jsonMap = json.decode(response.body);
     jsonMap['photos'].forEach((element) {
